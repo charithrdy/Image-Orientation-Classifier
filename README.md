@@ -92,4 +92,7 @@ For decision tree, we have used an ensemble learning approach, where we have bui
   - Later on i have followed a technique, where I am constantly checking if a node predicts a particular label with at least 90% confidence, then I am stopping the splitting there. Thus, it is a dynamic cutoff.  
   
     
+We have acheived a final accuracy of 70.8% on the test data set.
 
+## K- Nearest Neighbours
+KNN algorithm is one of the simplest classification algorithm. KNN is a nonparametric, lazy learning algorithm. So for this, we have taken the data from the files given as numpy arrays namely x_train, y_train, x_test, y_test. Then, we have used the Euclidean distance as the distance metric for calculating the distances between the points. For each test instance in x_test the distance to each of the x_train is calculated and stored into a matrix of size n*m where n is the length of x_test and m is the length of x_train. After we found the distances we sorted each row in the matrix using argsort(). Depending on the k value chosen we selected the initial k distances in each row of the sorted distances. From the selected first k nearest neighbours, we chose the most common label and predict that as the label for the test instance and append it to the predictions array.
