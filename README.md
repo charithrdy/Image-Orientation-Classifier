@@ -1,7 +1,6 @@
-# cmusku-bkandla-bhreddy-a4
+# Image Orientation Classification
 
-Please find the assigment report in the root folder (cmusku_bkandla_bhreddy_a4_report.pdf)
-This is a brief description of one of the algorithms.
+Implemented using 3 different models (kNN, Adaboost, Random Forests) from scratch
 ## AdaBoost Implementation
 
 - To handle mutli class classification problem we implemented a slightly different approach
@@ -71,6 +70,26 @@ pixel values at two indices randomly selected in each image sample as decision s
 proposed in one of the research papers. We made use of the weight, error calculation
 and the logic for handling multiclass.
   - [Algorithm](https://web.stanford.edu/~hastie/Papers/samme.pdf)
+  
+
+## Random Forest
+
+For decision tree, we have used an ensemble learning approach, where we have built random decision forests and using the max voting label out of all to predict the output. 
+
+### Logic: 
+ - By following the thumb rule for random forests i have considered square root number of features. So since we have 192 features in the form of R, G, B for each image, i have randomly generated 14 features and considered them to build each tree. 
+ - I am calculating the entropies for each node at the median value of that feature, to pick up the best node to split at any point of time. 
+ - Using gini entropy to calculate this. Splitting at median threshold so as to have maximum possible data left for further lower part of the tree.
+ 
+ ### Implementation: 
+ - I have used a binary tree to build the random forests. With Tree as a main class and Node as sub class. 
+ - Recursively built each random forest, by calling the bestsplit method, which returns the feature to split at, which gives max entropy.
+ - This helps us with runtime efficiency while both training and testing. 
+### Parameter Tuning: 
+ - When i tried to tune for depth cutoff, n=11 seemed to be stable, the peak point. > 11 it seems to overfitting and thus performing worse.
+ - For number of trees, more the trees better was the accuracy. But it seemes to stabilize after n= 60. 
+### Dynamic depth cut-off: 
+  - Later on i have followed a technique, where I am constantly checking if a node predicts a particular label with at least 90% confidence, then I am stopping the splitting there. Thus, it is a dynamic cutoff.  
   
     
 
